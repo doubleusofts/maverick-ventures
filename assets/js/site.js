@@ -58,14 +58,6 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
   const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold:.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
-const dialog = document.getElementById('info-dialog');
-const notices = {
-  privacy:['Privacy Policy','Placeholder policy: this demo does not submit contact details, use analytics or set tracking cookies. Replace this notice with your approved privacy policy when you connect a form service or other data processing.'],
-  compliance:['Compliance','Add your approved compliance statement and reporting channel here. For now, please use the contact page for general enquiries; no confidential reporting service is connected.'],
-  social:['Social profile pending','Your company profile will appear here once its official URL is supplied. Replace this placeholder button with a link to your verified LinkedIn, Facebook or YouTube account.']
-};
-document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => { const [title,copy]=notices[button.dataset.dialog]; document.getElementById('dialog-title').textContent=title; document.getElementById('dialog-copy').textContent=copy; dialog.showModal(); }));
-document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
 const form = document.getElementById('contact-form');
 if (form) form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -74,10 +66,57 @@ if (form) form.addEventListener('submit', async event => {
   message.setCustomValidity(message.value.trim().length>=10 ? '' : 'Please enter at least 10 non-space characters.');
   if (!form.reportValidity()) return;
   const status=form.querySelector('.status'), submit=form.querySelector('[type=submit]');
-  if (!FORM_ENDPOINT) { status.textContent='Thank you. Your enquiry passed validation in demo mode. Nothing was sent or saved. Connect a form service to enable delivery.'; return; }
+  if (!FORM_ENDPOINT) { status.textContent='Online delivery is not connected yet. Your enquiry was not sent. Please email info@maverickventures.international or call +966 55 645 3204.'; return; }
   submit.disabled=true; status.textContent='Sending your enquiry…';
   try { const response=await fetch(FORM_ENDPOINT,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}); if(!response.ok) throw new Error('Delivery failed'); status.textContent='Thank you. Your enquiry has been sent successfully.'; form.reset(); }
   catch { status.textContent='Your enquiry could not be sent. Please try again or use the company contact details.'; }
   finally { submit.disabled=false; }
 });
 if (form) form.addEventListener('input', event => { if ('setCustomValidity' in event.target) event.target.setCustomValidity(''); });
+
+const certificateDialog = document.querySelector('.certificate-lightbox');
+if (certificateDialog) {
+  const cards = [...document.querySelectorAll('[data-certificate]')];
+  const picture = certificateDialog.querySelector('.certificate-viewport img');
+  const viewport = certificateDialog.querySelector('.certificate-viewport');
+  let current = 0, zoom = 1, opener;
+  function fitImage() {
+    if (!picture.naturalWidth || !certificateDialog.open) return;
+    const scale = Math.min((viewport.clientWidth - 20) / picture.naturalWidth, (viewport.clientHeight - 20) / picture.naturalHeight);
+    picture.style.width = `${picture.naturalWidth * scale * zoom}px`;
+    picture.style.height = 'auto';
+  }
+  function setZoom(value) {
+    zoom = Math.max(1, Math.min(4, value));
+    fitImage();
+    certificateDialog.querySelector('[data-cert-action="zoom-out"]').disabled = zoom === 1;
+    certificateDialog.querySelector('[data-cert-action="zoom-in"]').disabled = zoom === 4;
+  }
+  function show(index) {
+    current = (index + cards.length) % cards.length;
+    const card = cards[current], title = card.querySelector('h3').textContent;
+    picture.src = card.dataset.full; picture.alt = title;
+    document.getElementById('certificate-title').textContent = title;
+    certificateDialog.querySelector('.certificate-counter').textContent = `${current + 1} of ${cards.length} · Arrow keys: previous / next · + / −: zoom · Esc: close`;
+    setZoom(1); viewport.scrollTo(0, 0);
+  }
+  cards.forEach((card, index) => card.addEventListener('click', () => {
+    opener = card; show(index); certificateDialog.showModal(); document.body.style.overflow = 'hidden'; fitImage();
+    certificateDialog.querySelector('[data-cert-action="close"]').focus();
+  }));
+  function action(name) {
+    if (name === 'close') certificateDialog.close();
+    if (name === 'previous') show(current - 1);
+    if (name === 'next') show(current + 1);
+    if (name === 'zoom-in') setZoom(zoom + .5);
+    if (name === 'zoom-out') setZoom(zoom - .5);
+  }
+  certificateDialog.querySelectorAll('[data-cert-action]').forEach(button => button.addEventListener('click', () => action(button.dataset.certAction)));
+  certificateDialog.addEventListener('keydown', event => {
+    const command = {ArrowLeft:'previous',ArrowRight:'next','+':'zoom-in','=':'zoom-in','-':'zoom-out'}[event.key];
+    if (command) { event.preventDefault(); action(command); }
+  });
+  certificateDialog.addEventListener('close', () => { document.body.style.overflow = ''; opener?.focus(); });
+  picture.addEventListener('load', fitImage);
+  window.addEventListener('resize', fitImage);
+}

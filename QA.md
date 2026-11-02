@@ -1,21 +1,17 @@
-# Verification — 19 October 2026
+# Maverick Ventures validation — 2 November 2026
 
-Passed:
+- Build succeeds: 14 static pages, 11 certificate cards.
+- Static check passes: 618 local references, one H1 per page, metadata, anchors, CSS assets, no excluded-page links.
+- Browser layout sweep: all 14 pages at 320, 390, 768 and 1280 px; no horizontal page overflow and correct headings/titles.
+- Fixed long-heading overflow on 320 px phones.
+- Loaded images resolve. The empty lightbox image before selection is intentionally source-less, not a failed request.
+- Desktop compact menu opens and links navigate; the existing pointer bridge and delayed-close implementation are retained.
+- Mobile navigation opens/closes; capabilities accordion exposes all eight services.
+- Certificate viewer: fit-to-screen, next button, right-arrow navigation, + zoom, Escape and focus return verified. Fixed an initial landscape-image fit issue on mobile.
+- Contact form checked with dummy local data: validates and explicitly reports no delivery while FORM_ENDPOINT is empty. No data was submitted to a remote service.
+- No browser console errors observed during the form check. Map iframe loads from the supplied address query; no claim of independently geocoded entrance coordinates.
+- Full certificate renders inspected against source page layouts; 220 DPI; 22 image files (11 full + 11 thumbnails), about 3.3 MB total.
+- No PDF, excluded portal screenshot, Chamber instructions or blank GOSI page in the deployable site folder.
+- Old company copy, invented history and obsolete service pages removed. The sole reference-site name remaining is its required image-provenance URL in CREDITS.md for the expressly retained home background.
 
-- Generated 12 standalone HTML pages from shared templates.
-- Static verification of 300 relative links/asset references, page metadata, h1 headings, skip-link targets and font references.
-- JavaScript syntax check.
-- Desktop browser inspection at a 1280px viewport: home hero, compact dropdown with image, and a representative inner-page banner. No horizontal overflow or broken loaded images on the home page.
-- Desktop menu click and Escape behavior. Fixed the initial hover/click conflict found during QA.
-- Capability panel selection by click, plus keyboard Home returning to the first panel.
-- Mobile visual inspection in a 390px embedded viewport: header, hero and menu; hamburger opening/closing; capability accordion with all six destinations; switching to Who We Are closes the other group.
-- Required contact fields prevent empty submission. A valid local test displays explicit demo success without transmitting or storing data.
-- Privacy dialog opens, closes and returns focus to its trigger.
-
-Limits:
-
-- Browser checks used the available Chromium-based in-app browser and an embedded narrow viewport, not physical iOS/Android devices or a comprehensive browser matrix.
-- Form-service delivery, real map integration and social account destinations await company configuration.
-- No claim of pixel-perfect equivalence to CCC across every viewport. Measured tokens and adaptations are documented in DESIGN-NOTES.md.
-- Publication to GitHub was not requested as an action and no repository was supplied. The source archive is ready to upload; enable GitHub Pages in the repository settings.
-
+These checks cover the local static build. Form delivery remains unconfigured; see README.md. Review flags are in CONTENT-REPORT.md.

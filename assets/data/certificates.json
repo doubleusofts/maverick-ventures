@@ -1,0 +1,123 @@
+[
+  {
+    "id": "commercial-registration-en",
+    "title": "Commercial Registration Certificate (English)",
+    "authority": "Ministry of Commerce",
+    "group": "Company registration & licensing",
+    "sourcePage": 17,
+    "validity": "",
+    "image": "assets/images/certificates/commercial-registration-en.webp",
+    "thumbnail": "assets/images/certificates/commercial-registration-en-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "commercial-registration-ar",
+    "title": "شهادة السجل التجاري",
+    "authority": "Ministry of Commerce",
+    "group": "Company registration & licensing",
+    "sourcePage": 16,
+    "validity": "",
+    "image": "assets/images/certificates/commercial-registration-ar.webp",
+    "thumbnail": "assets/images/certificates/commercial-registration-ar-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "investment-registration",
+    "title": "Investment Registration Certificate",
+    "authority": "Ministry of Investment",
+    "group": "Company registration & licensing",
+    "sourcePage": 15,
+    "validity": "Update date: 7 September 2027",
+    "image": "assets/images/certificates/investment-registration.webp",
+    "thumbnail": "assets/images/certificates/investment-registration-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "jeddah-chamber",
+    "title": "Jeddah Chamber Membership Certificate",
+    "authority": "Jeddah Chamber",
+    "group": "Company registration & licensing",
+    "sourcePage": 25,
+    "validity": "Valid to 30/09/2027",
+    "image": "assets/images/certificates/jeddah-chamber.webp",
+    "thumbnail": "assets/images/certificates/jeddah-chamber-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "national-address",
+    "title": "National Address Proof",
+    "authority": "Saudi Post | SPL",
+    "group": "Company registration & licensing",
+    "sourcePage": 19,
+    "validity": "Valid to 4/4/2027",
+    "image": "assets/images/certificates/national-address.webp",
+    "thumbnail": "assets/images/certificates/national-address-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "zatca-registration",
+    "title": "ZATCA Registration Certificate",
+    "authority": "Zakat, Tax and Customs Authority",
+    "group": "Tax & financial",
+    "sourcePage": 24,
+    "validity": "",
+    "image": "assets/images/certificates/zatca-registration.webp",
+    "thumbnail": "assets/images/certificates/zatca-registration-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "vat-registration",
+    "title": "ZATCA VAT Registration Certificate",
+    "authority": "Zakat, Tax and Customs Authority",
+    "group": "Tax & financial",
+    "sourcePage": 18,
+    "validity": "",
+    "image": "assets/images/certificates/vat-registration.webp",
+    "thumbnail": "assets/images/certificates/vat-registration-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "iban",
+    "title": "IBAN Certificate",
+    "authority": "Saudi Awwal Bank",
+    "group": "Tax & financial",
+    "sourcePage": 20,
+    "validity": "Valid 365 days from 21/10/2026",
+    "image": "assets/images/certificates/iban.webp",
+    "thumbnail": "assets/images/certificates/iban-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "gosi-certificate",
+    "title": "GOSI Social Insurance Certificate",
+    "authority": "General Organization for Social Insurance",
+    "group": "Labour & compliance",
+    "sourcePage": 22,
+    "validity": "Valid to 1448/06/10 H",
+    "image": "assets/images/certificates/gosi-certificate.webp",
+    "thumbnail": "assets/images/certificates/gosi-certificate-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "gosi-wages",
+    "title": "GOSI Statement of Wages and Subscriptions",
+    "authority": "General Organization for Social Insurance",
+    "group": "Labour & compliance",
+    "sourcePage": 21,
+    "validity": "",
+    "image": "assets/images/certificates/gosi-wages.webp",
+    "thumbnail": "assets/images/certificates/gosi-wages-thumb.webp",
+    "renderDpi": 220
+  },
+  {
+    "id": "qiwa",
+    "title": "Qiwa Nationalization (Saudization) Certificate",
+    "authority": "Ministry of Human Resources and Social Development · Qiwa",
+    "group": "Labour & compliance",
+    "sourcePage": 27,
+    "validity": "Valid to 21/01/2027",
+    "image": "assets/images/certificates/qiwa.webp",
+    "thumbnail": "assets/images/certificates/qiwa-thumb.webp",
+    "renderDpi": 220
+  }
+]

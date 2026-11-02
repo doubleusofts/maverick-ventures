@@ -1,71 +1,42 @@
 # Maverick Ventures
 
-A responsive, 12-page corporate construction website, closely following the visual language of [CCC](https://www.ccc.net/), inspected on 19 October 2026. Built with semantic HTML, shared CSS and vanilla JavaScript. No runtime dependencies, build service, API keys or external asset requests are needed.
+Static corporate website for Maverick Ventures Company (شركة مافريك فينتشرز). Approved layout, Rubik typography, triangles, transitions, compact dropdowns and mobile navigation are preserved with company content and branding.
 
-## Open and run
+## Local use
 
-Open `index.html` directly, or install Node.js 18+ and run:
-
-```sh
-npm start
-```
-
-Open the printed local address, normally `http://127.0.0.1:4173`. Stop with Ctrl+C.
-
-The generated HTML is committed and ready to serve. To update shared markup or page content, edit `scripts/build.mjs`, then run:
+Node.js required. No dependencies to install.
 
 ```sh
 npm run build
 npm run check
+npm start
 ```
 
-There is nothing to install. Direct HTML edits work, but rebuilding overwrites them. CSS and JavaScript edits are preserved.
+Open http://127.0.0.1:4173/. Generated HTML is committed for GitHub Pages, main branch / root, with .nojekyll. Host: https://doubleusofts.github.io/maverick-ventures/.
 
-## GitHub Pages
+## Editing
 
-Upload the **contents of this folder** to your repository. In GitHub Settings → Pages, select deployment from your branch and the root folder. This is the normal GitHub Pages enablement step; no framework configuration, custom workflow or build command is required. `.nojekyll` is included. All internal navigation and assets use relative paths, including deployment under a repository subpath.
+- scripts/content.mjs: company text, services and photos.
+- scripts/build.mjs: shared templates, navigation, footer and SEO. Rebuild after changes.
+- assets/data/certificates.json: single source for certificate titles, issuers, validity labels, source pages and image paths. Update expiry labels here, then rebuild.
+- assets/css/site.css: shared brand colors and approved layout.
+- assets/js/site.js: menus, tabs, form and certificate viewer.
+- CREDITS.md and CONTENT-REPORT.md: provenance, page list and review flags.
 
-## Structure
+The certificate viewer provides next/previous, arrow keys, zoom (+/−), Escape, focus containment and restoration. Full certificate images are rendered at 220 DPI, with separate WebP thumbnails.
 
-```text
-index.html                  Home
-pages/                      11 dedicated inner pages
-assets/css/site.css         Shared styles and responsive rules
-assets/js/site.js           Menus, tabs, reveals, dialogs and contact form
-assets/images/              Local WebP photography, SVG motif and favicon
-assets/fonts/               Self-hosted Rubik and OFL license
-scripts/build.mjs           Shared page templates and editable content
-scripts/check.mjs           Static integrity checks
-scripts/serve.mjs           Dependency-free local preview
-ASSET-SOURCES.md             Photography provenance and replacement guidance
-DESIGN-NOTES.md              Measured reference styles and intentional adaptations
-```
+## Form integration
 
-## Pages and behavior
+FORM_ENDPOINT in assets/js/site.js is intentionally empty. The form validates locally and clearly reports that nothing was sent. Set it to a public form-service URL accepting form-data POST and returning a successful HTTP response. Keep secret keys server-side. Configure service-side spam protection and an appropriate privacy notice before collecting submissions. Email and phone links work independently.
 
-Home; Our Story & Legacy; Vision & Values; Our Services; Certifications & Memberships; Energy & Chemicals; Renewables, Power & Water; Pipelines; Buildings; Transportation; Innovation; Connect with Us.
+## Branding and SEO
 
-The only primary navigation entries are Who We Are, Capabilities and Connect with Us. Desktop menus open on hover or click; keyboard users can press Enter or Arrow Down to expand, Tab through links, and Escape to close. Mobile uses a hamburger menu and accordion groups. The six capability panels support click and arrow-key selection, Home and End. Scroll reveals honour reduced-motion settings.
+Original embedded logo extracted from PDF pages 1/14; transparent PNG/WebP, square favicon and 1200×630 share image included. CSS variables: PDF gold #D8AD50, logo navy sample #0C1D2F, PDF grey #AFAFAF. Logo gold sample #CAA45B remains in original artwork.
 
-Footer Compliance and Privacy Policy open editable notices, rather than adding pages outside the requested scope. Social icons open transparent placeholders until official company URLs are supplied.
+Each page has a title, description, canonical, Open Graph and Organization data. When changing hosting to the supplied company domain, update canonical/OG URLs in scripts/build.mjs and rebuild. No DNS or custom-domain change is included.
 
-## Replace before launch
+## Exclusions
 
-- **Brand identity:** Maverick Ventures and the simple triangle monogram are provisional, inferred from the project name. Replace the shared `brand()` template and favicon with approved identity assets.
-- **Company claims and copy:** All body copy is illustrative. The requested “70+ Year” heading is retained and visibly flagged; replace it with a verified history. No real certifications, completed projects, clients or statistics are asserted.
-- **Photography:** All reference photographs are local design placeholders from CCC, not representations of Maverick Ventures projects. Replace them with your own approved or licensed imagery. See `ASSET-SOURCES.md`. Image filenames can remain unchanged to preserve links.
-- **Contact details:** Replace bracketed address, phone, email and office hours in `contact()` inside `scripts/build.mjs`.
-- **Map:** Replace the styled map placeholder with your verified office map. For an iframe, provide a descriptive title, lazy loading and an appropriate referrer policy. No third-party map requests are made by default.
-- **Social accounts:** Replace the three placeholder buttons in `footer()` with anchors to your official LinkedIn, Facebook and YouTube profiles, retaining accessible labels.
-- **Compliance and privacy:** Replace `notices` in `assets/js/site.js` with approved content and your actual reporting channel. The existing text is not a final company policy.
-- **SEO:** Titles and descriptions are per-page. Open Graph images use relative paths to maintain portability. Once the public hostname is known, use absolute public image URLs and add per-page canonical and `og:url` values for reliable social previews.
+Source PDF and extraction files stay outside the site. .gitignore excludes PDFs, portal screenshots, Chamber instructions and the blank GOSI second page. Only approved certificate images/thumbnails are deployable. Never upload working extraction folders.
 
-## Contact form integration
-
-Demo mode validates required name, email, subject and message, and displays an honest success message stating nothing was sent or saved. It does not use local storage. Phone and company are optional. The message must contain at least 10 characters after trimming.
-
-To enable a JSON-compatible form service such as Formspree, replace the empty `FORM_ENDPOINT` constant in `assets/js/site.js` with your public form endpoint. The existing handler sends `FormData` via POST, handles non-success responses, prevents duplicate submits, and resets only on successful delivery. Configure the service to accept your production origin. Do not put secret API keys in client code. Add spam controls, server-side validation and your approved privacy language at the service/backend layer. Netlify Forms requires its own build-time form declarations and deployment on Netlify; it is not automatically enabled by this template or GitHub Pages.
-
-## Verification
-
-`npm run check` verifies exactly 12 pages, local links and image/font references, one h1 per page, SEO fields, skip targets and exclusion of unwanted pages. Browser QA is recorded in `QA.md`. Review final content, image permissions and real form delivery after substituting production details.
+© 2026 Maverick Ventures. All rights reserved.

@@ -1,7 +1,17 @@
 node_modules/
 .DS_Store
-Thumbs.db
 *.log
-.env
-.env.*
+.env*
 !.env.example
+# Source PDF and excluded documents must never be published.
+*.pdf
+Maverick_Ventures_Company-PQD.pdf
+Maverick Ventures Company-PQD.pdf
+**/jeddah-chamber-portal*
+**/chamber-instructions*
+**/gosi-blank-second-page*
+**/page-23.*
+**/page-26.*
+**/page-28.*
+/tmp/
+/private-source/
